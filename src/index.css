@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+
+@font-face{
+    font-family: "cutive";
+    font-weight: 400;
+    font-style: normal;    
+    src:url("/cutive-mono-latin-400-normal.woff2") format('woff2');
+}
+
+@font-face{
+    font-family: "brawler";
+    font-weight: 400;
+    font-style: normal;    
+    src:url("/brawler-regular.ttf") format('truetype');
+}
+
+@theme{
+    --color-paper-dark:#E6DED0;
+    --color-paper-light:#E6E2D6;
+    --color-coal:#2A2720;
+    --color-rust:#6e4e22;
+    --color-candelight:#c44716;
+
+    --animate-fade-l-r: fade-l-r .85s ease-out forwards;
+    --animate-crawl-d-u: crawl-d-u .33s ease-in-out forwards;
+
+    @keyframes fade-l-r{
+        0%{
+            transform:translateX(-100dvw);
+            opacity: 0;
+        }
+        75%{
+            opacity:1;
+        }
+        100%{
+            transform:translateX(0);
+        }
+    }
+
+    @keyframes crawl-d-u{
+        0%{            
+            transform: translateY(40%) scale(.5);
+            opacity: 0;
+        }
+        50%{
+            opacity:1;
+
+        }
+        100%{
+            
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @keyframes crawl-d-u-stop{
+        0%{            
+            transform: translateY(100%);
+        }
+        9%{
+            transform: translateY(90%);
+        }
+        70%{
+            transform: translateY(90%);
+        }
+        100%{
+            
+            transform: translateY(0);
+        }
+    }
+  
+}
+
+@layer base{
+    *{
+        font-family: "cutive", 'Courier New', Courier, monospace;
+        letter-spacing: -.05rem; 
+        color:var(--color-coal);       
+    }
+
+    html{
+        background-color:var(--color-paper-light);        
+    }  
+    
+    h1,h2,h3,h4,h5,h6{
+        font-family: "brawler", 'Times New Roman', Times, serif;
+        letter-spacing: initial;         
+    }
+
+    a{
+        color:var(--color-candelight);
+        font-weight: 600;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--color-paper-light);
+        border: solid 1px var(--color-rust);
+        border-radius: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-rust);
+        border-radius: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-candelight);
+    }
+    
+}
+
+@layer components{
+    .header-xl{
+        @apply text-4xl font-semibold text-rust my-2
+    }
+
+    .subtitle{
+        @apply text-sm text-rust/90
+    }
+
+    
+
+    
+}
