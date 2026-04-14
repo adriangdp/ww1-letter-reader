@@ -29,7 +29,7 @@ function App() {
         aria-hidden="true" src="/web-icon-512.png" alt="Web icon"
       />
     <h1 className='header-xl mb-0 relative'>Letters from the trenches</h1>
-    <span className='subtitle'>A brief collection of transcripted letters from the Great War (1914-1918)</span>
+    <span className='subtitle'>A brief collection of transcribed letters from the Great War (1914-1918)</span>
     
     <SearchComponent letters={letters} setFilteredLetters={setFilteredLetters}></SearchComponent>
     <span className='block my-0 md:my-1'>Showing <strong className='text-candelight'>{filteredLetters.length}</strong> of 60 letters</span>
