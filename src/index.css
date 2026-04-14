@@ -16,6 +16,9 @@
 }
 
 @theme{
+    --font-brawler: "brawler", 'Times New Roman', Times, serif;
+    --font-cutive: "cutive", 'Courier New', Courier, monospace;
+
     --color-paper-dark:#E6DED0;
     --color-paper-light:#E6E2D6;
     --color-coal:#2A2720;
@@ -73,7 +76,7 @@
 
 @layer base{
     *{
-        font-family: "cutive", 'Courier New', Courier, monospace;
+        font-family: var(--font-cutive);
         letter-spacing: -.05rem; 
         color:var(--color-coal);       
     }
@@ -83,13 +86,12 @@
     }  
     
     h1,h2,h3,h4,h5,h6{
-        font-family: "brawler", 'Times New Roman', Times, serif;
+        font-family: var(--font-brawler);
         letter-spacing: initial;         
     }
 
     a{
-        color:var(--color-candelight);
-        font-weight: 600;
+        color:var(--color-candelight);        
     }
 
     ::-webkit-scrollbar {

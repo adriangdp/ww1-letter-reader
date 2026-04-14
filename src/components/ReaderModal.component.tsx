@@ -12,8 +12,8 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
         <div className="z-40 fixed top-0 left-0 backdrop-blur-xs w-screen h-screen bg-black/20 flex justify-center items-center">
             <div className="relative animate-crawl-d-u w-full md:max-w-10/12 lg:max-w-1/2 xl:max-w-1/3 max-h-[90dvh] p-10 flex flex-col bg-paper-dark border-2 border-rust shadow-[8px_15px_10px_#00000043] oveflow-hidden">   
                 <dl>
-                    <dd className="inline text-rust/60 font-semibold">letter id: </dd>
-                    <dt className="inline text-rust/60 font-semibold">{letter_key}</dt>
+                    <dd className="inline text-rust/80 font-semibold">letter id: </dd>
+                    <dt className="inline text-rust/80 font-semibol">{letter_key}</dt>
                 </dl>
                 <span className="block my-3 text-start text-2xl font-semibold text-coal">
                     {`${author||"[Unidentified]"}`}
@@ -32,7 +32,7 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
                         { isDated?
                             (
                                 <span>                                    
-                                    <time className="text-sm font-semibold">
+                                    <time className="text-sm font-semibold text-rust/80">
                                     {`
                                         ${day? day.padStart(2,"0")+"/" : ""}${month? month.padStart(2,"0")+"/" : ""}${year||""}
                                     `}
@@ -40,7 +40,7 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
                                 </span>
                             )
                             :
-                            <span className="text-sm font-semibold">[Undated]</span>                             
+                            <span className="text-sm font-semibold text-rust/80">[Undated]</span>                             
                         }
                     </div>
                     <div>
@@ -53,7 +53,7 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
                             <path fill="none" d="M0 0h24v24H0z"/>
                             </g>
                         </svg>                       
-                        <span className="text-sm font-semibold">{place || "[Unknown origin]"}</span> 
+                        <span className="text-sm font-semibold text-rust/80">{place || "[Unknown origin]"}</span> 
                     </div>
                     <div className="flex items-center">
                         {language === "french" ? 
@@ -71,21 +71,21 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
                                 <g id="SVGRepo_iconCarrier"> <g id="Infos"> <rect id="BG" x="-200" y="-1160" fill="#D8D8D8" width="2180" height="1700"/> </g> <g id="Others"> </g> <g id="Europe"> <g id="Row_5"> <g> <polygon fill="#2A66B7" points="20.2,120 46.3,120 46.3,95.8 "/> <polygon fill="#2A66B7" points="46.3,0 20.6,0 46.3,23.9 "/> <polygon fill="#2A66B7" points="0,78.7 0,101.4 24.6,78.7 "/> <polygon fill="#2A66B7" points="130,101.8 130,78.7 105.1,78.7 "/> <polygon fill="#2A66B7" points="0,18.2 0,41.3 24.9,41.3 "/> <polygon fill="#2A66B7" points="130,41.3 130,18.6 105.4,41.3 "/> <polygon fill="#2A66B7" points="83.7,120 109.4,120 83.7,96.1 "/> <polygon fill="#2A66B7" points="109.8,0 83.7,0 83.7,24.2 "/> <g> <polygon fill="#DC4437" points="85.1,78.7 83.7,78.7 83.7,86.5 119.7,120 129.4,120 130,120 130,111.4 94.8,78.7 "/> <polygon fill="#DC4437" points="44.9,41.3 46.3,41.3 46.3,33.5 10.3,0 0.6,0 0,0 0,8.6 35.2,41.3 "/> <polygon fill="#DC4437" points="34.9,78.7 0,110.9 0,120 9.8,120 46.3,86.3 46.3,78.7 44.8,78.7 "/> <polygon fill="#DC4437" points="120.2,0 83.7,33.7 83.7,41.3 85.2,41.3 95.1,41.3 130,9.1 130,0 "/> <polygon fill="#DC4437" points="76.7,0 53.3,0 53.3,48.3 0,48.3 0,71.7 53.3,71.7 53.3,120 76.7,120 76.7,71.7 130,71.7 130,48.3 76.7,48.3 "/> </g> <g> <polygon fill="#FFFFFF" points="95.1,41.3 83.7,41.3 83.7,33.7 120.2,0 115,0 109.8,0 83.7,24.2 83.7,0 76.7,0 76.7,48.3 130,48.3 130,41.3 105.4,41.3 130,18.6 130,13.8 130,9.1 "/> <polygon fill="#FFFFFF" points="46.3,23.9 20.6,0 15.5,0 10.3,0 46.3,33.5 46.3,41.3 35.2,41.3 0,8.6 0,13.4 0,18.2 24.9,41.3 0,41.3 0,48.3 53.3,48.3 53.3,0 46.3,0 "/> <polygon fill="#FFFFFF" points="76.7,71.7 76.7,120 83.7,120 83.7,96.1 109.4,120 114.5,120 119.7,120 83.7,86.5 83.7,78.7 94.8,78.7 130,111.4 130,106.6 130,101.8 105.1,78.7 130,78.7 130,71.7 92.5,71.7 "/> <polygon fill="#FFFFFF" points="0,71.7 0,78.7 24.6,78.7 0,101.4 0,106.2 0,110.9 34.9,78.7 46.3,78.7 46.3,86.3 9.8,120 15,120 20.2,120 46.3,95.8 46.3,120 53.3,120 53.3,71.7 52.4,71.7 "/> </g> </g> </g> <g id="Row_4"> </g> <g id="Row_3"> </g> <g id="Row_2"> </g> <g id="Row_1"> </g> </g> </g>
                             </svg>                            
                         }
-                        <span className="text-sm font-semibold">{language}</span>
+                        <span className="text-sm font-semibold text-rust/80">{language}</span>
                     </div>
                 </div>
                 <hr className="mx-0 my-5 text-rust"/>
                 {
                     entryReadable &&
                     <div className="overflow-y-scroll">
-                        <p className="whitespace-pre-wrap">{entryReadable.content}</p>
+                        <p className="whitespace-pre-wrap text-coal/80 font-brawler tracking-wide">{entryReadable.content}</p>
                     </div>
                     
                 }                
                 <hr className="mx-0 my-5 text-rust" />
 
                 <div>
-                    <p className="p-3 bg-candelight/20 border-2 border-candelight">
+                    <p className="p-3 border-2 text-rust bg-paper-light border-candelight/20">
                         This letter belongs to a <a href="https://www.kaggle.com/datasets/anthaus/world-war-i-letters">
                         dataset provided by Anthaus</a> and was originally sourced from
                         {
