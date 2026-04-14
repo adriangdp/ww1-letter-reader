@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import type { Letter } from './types/types'
 import { FetchLetters } from './utils/parsers'
 import LetterDisplay from './components/LetterDisplay.component'
-import './App.css'
 import SearchComponent from './components/search.component'
 
 
