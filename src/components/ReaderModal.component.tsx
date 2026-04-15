@@ -12,8 +12,8 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
         <div className="z-40 fixed top-0 left-0 backdrop-blur-xs w-screen h-screen bg-black/20 flex justify-center items-center">
             <div className="relative animate-crawl-d-u w-full md:max-w-10/12 lg:max-w-1/2 xl:max-w-1/3 max-h-[90dvh] p-10 flex flex-col bg-paper-dark border-2 border-rust shadow-[8px_15px_10px_#00000043] oveflow-hidden">   
                 <dl>
-                    <dd className="inline text-rust/80 font-semibold">letter id: </dd>
-                    <dt className="inline text-rust/80 font-semibol">{letter_key}</dt>
+                    <dt className="inline text-rust/80 font-semibold">letter id: </dt>
+                    <dd className="inline text-rust/80 font-semibol">{letter_key}</dd>
                 </dl>
                 <span className="block my-3 text-start text-2xl font-semibold text-coal">
                     {`${author||"[Unidentified]"}`}
