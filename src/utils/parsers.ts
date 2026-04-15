@@ -14,7 +14,7 @@ interface PaparseResult<T> {
 
 export const FetchLetters = async():Promise<Letter[]> =>{
     const parsedMetaData = await parseCSV<EntryMeta>("/data/index.csv");
-    const parsedPlacesData = await parseCSV<PlacesData>("/data/index.csv");
+    const parsedPlacesData = await parseCSV<PlacesData>("/data/places.csv");
     const contentLetter = await fetchContentLetter();
 
     const metaData:EntryMeta[] = [...parsedMetaData.data];
