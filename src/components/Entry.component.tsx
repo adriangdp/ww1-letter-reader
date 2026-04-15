@@ -28,9 +28,9 @@ const EntryComponent = (
             >       
                 <div className="flex justify-between">
                     <div className="flex flex-col items-start justify-center">                    
-                        <h3 className="text-lg font-semibold text-start">
+                        <h2 className="text-lg font-semibold text-start">
                           {author || "[Unidentified]"}                            
-                        </h3>                
+                        </h2>                
                         <div>
                             <svg aria-hidden="true" focusable="false"
                                 className="size-5 inline mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#6e4e22">

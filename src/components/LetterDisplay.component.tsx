@@ -24,8 +24,8 @@ const LetterDisplay =({letters}:{letters:Letter[]}) => {
     },[isReaderOpen])
 
     return (
-    <div>
-        <div className={`max-w-11/12 md:max-w-7/12 lg:max-w-6/12 xl:max-w-5/12 2xl:max-w-4/12 m-auto flex flex-col items-center`}>
+    <main>
+        <ul className={`max-w-11/12 md:max-w-7/12 lg:max-w-6/12 xl:max-w-5/12 2xl:max-w-4/12 m-auto flex flex-col items-center`}>
         {
             letters && letters.map((e,i)=>
             <EntryComponent               
@@ -35,7 +35,7 @@ const LetterDisplay =({letters}:{letters:Letter[]}) => {
             />
             )
         }  
-        </div>
+        </ul>
         {
         isReaderOpen && entryReadable &&
             <ReaderModal             
@@ -43,7 +43,7 @@ const LetterDisplay =({letters}:{letters:Letter[]}) => {
             setIsOpen={setIsReaderOpen} 
             />
         }
-    </div>
+    </main>
 
     )
 }

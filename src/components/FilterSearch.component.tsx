@@ -21,9 +21,11 @@ const SearchComponent = ({
                 className='p-2 w-full lg:w-4/12 border max-h-10 border-rust bg-paper-light lg:h-10'
                 placeholder='Search by author / text / origin / letter id'
                 onChange={(e)=>handleFilterWords(e)}
+                aria-label="Search input"
             ></input>
             <select className='border p-2 border-rust bg-paper-light max-h-10 lg:h-10'
                 onChange={(e)=>handleFilterLanguage(e)}
+                aria-label="Language filter selector"
             >
                 <option value="all">Any language</option>
                 <option value="english">English</option>
