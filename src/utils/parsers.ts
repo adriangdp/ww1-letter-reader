@@ -30,7 +30,7 @@ export const FetchLetters = async():Promise<Letter[]> =>{
             locationData:{
                 latitude: relatedPlace?.latitude,
                 longitude: relatedPlace?.longitude,
-                contry: relatedPlace?.country
+                country: relatedPlace?.country
             }
         }
 

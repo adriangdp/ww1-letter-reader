@@ -26,6 +26,6 @@ export type Letter = {
     locationData?:{
         latitude?:number,
         longitude?:number,
-        contry?:string
+        country?:string
     }    
 }           
