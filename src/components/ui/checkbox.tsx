@@ -1,7 +1,7 @@
 interface Props{
     checked:boolean,
     value:string,
-    callback:(...args: any[]) => any
+    callback:(e:React.ChangeEvent<HTMLInputElement>) => void
 }
 
 import svg from "/svg/checkbox.svg";
