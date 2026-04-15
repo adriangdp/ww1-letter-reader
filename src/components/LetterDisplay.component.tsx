@@ -6,8 +6,13 @@ import ReaderModal from '../components/ReaderModal.component'
 
 const LetterDisplay =({letters}:{letters:Letter[]}) => {
 
-    const [isReaderOpen, setIsReaderOpen] = useState<boolean>(false)
-    const [entryReadable, setEntryReadable] = useState<Letter>()
+    const [isReaderOpen, setIsReaderOpen] = useState<boolean>(false);
+    const [entryReadable, setEntryReadable] = useState<Letter>();
+    const [preferredLang, setPreferredLang] = useState<string>("en");
+
+    const handleChangePreferredLang = (s:string) =>{
+        setPreferredLang(s)
+    }
 
     const handleOpenModal = (entry:Letter):void =>{
         setEntryReadable(entry);
@@ -39,8 +44,10 @@ const LetterDisplay =({letters}:{letters:Letter[]}) => {
         {
         isReaderOpen && entryReadable &&
             <ReaderModal             
-            entryReadable={entryReadable}
-            setIsOpen={setIsReaderOpen} 
+                entryReadable={entryReadable}
+                setIsOpen={setIsReaderOpen} 
+                preferredLang={preferredLang}
+                handlePreferredLanguage={handleChangePreferredLang}
             />
         }
     </main>

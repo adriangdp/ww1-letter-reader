@@ -1,14 +1,54 @@
+import { useMemo, useState } from "react";
 import type { Letter } from "../types/types";
+import { getTranslation } from "../services/translate";
 import LanguageFlag from "./ui/LanguageFlag.component";
+import Translator from "./Translator.component";
 
-const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}) =>{
+const ReaderModal = (
+    {
+        entryReadable,
+        preferredLang, 
+        setIsOpen,
+        handlePreferredLanguage
+    } 
+    :  
+    {
+        entryReadable:Letter, 
+        preferredLang:string,
+        setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+        handlePreferredLanguage: (s:string)=>void
+    
+    }) =>{
 
-    const {letter_key, author, language, place, day, month, year, source} = entryReadable.meta
-
+    const {letter_key, author, language, place, day, month, year, source} = entryReadable.meta;
+    const [translatedText,setTranslatedText] = useState<string>("");
+    const isTranslated = useMemo(()=>{
+        if(translatedText.length > 0){
+            return true;
+        }
+        return false;
+    }, [translatedText])
     const isDated = day.length + month.length + year.length > 0;
     const handleClose = ():void =>{
-        setIsOpen(false)
+        setIsOpen(false);
     }
+    const handleTranslateText = async(languageTo:string) =>{
+        console.log("OKODOKO")
+        console.log(languageTo)
+        const languageFrom = language === "french" ? "fr":"en";
+        const translationResponse = await getTranslation(
+            entryReadable.content,
+            languageFrom,
+            languageTo
+        )
+        if(translationResponse.length > 0){
+            setTranslatedText(translationResponse)
+        }
+        else{
+            setTranslatedText("")
+        }
+    }
+
     return(
         <div className="z-40 fixed top-0 left-0 backdrop-blur-xs w-screen h-screen bg-black/20 flex justify-center items-center">
             <div className="relative animate-crawl-d-u w-full md:max-w-10/12 lg:max-w-1/2 xl:max-w-1/3 max-h-[90dvh] p-10 flex flex-col bg-paper-dark border-2 border-rust shadow-[8px_15px_10px_#00000043] oveflow-hidden">   
@@ -65,13 +105,25 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
                 {
                     entryReadable &&
                     <div className="overflow-y-scroll">
-                        <p className="whitespace-pre-wrap text-coal/80 font-brawler tracking-wide">{entryReadable.content}</p>
+                        <p className="whitespace-pre-wrap text-coal/80 font-brawler tracking-wide">
+                            {
+                                !isTranslated ?
+                                entryReadable.content
+                                :
+                                translatedText
+                            }
+                        </p>
                     </div>
                     
                 }                
                 <hr className="mx-0 my-5 text-rust" />
 
-                <div>
+                <div className="max-w-full">
+                    <Translator 
+                        translate={handleTranslateText} 
+                        preferredLang={preferredLang} 
+                        handlePreferredLanguage={handlePreferredLanguage}
+                    ></Translator> 
                     <p className="p-3 border-2 text-rust bg-paper-light border-candelight/20">
                         This letter belongs to a <a href="https://www.kaggle.com/datasets/anthaus/world-war-i-letters">
                         dataset provided by Anthaus</a> and was originally sourced from
@@ -88,7 +140,7 @@ const ReaderModal = ({entryReadable, setIsOpen} :  {entryReadable:Letter, setIsO
                 <button aria-label="Close letter reader" onClick={handleClose}
                     className="m-0 text-3xl absolute top-1 right-3 text-rust font-bold cursor-pointer"
                 >X</button>
-            </div>            
+            </div>                     
         </div>
         
     );
