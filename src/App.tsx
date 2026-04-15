@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, type ChangeEvent } from 'react'
 import type { Letter } from './types/types'
 import { FetchLetters } from './utils/parsers'
 import LetterDisplay from './components/LetterDisplay.component'
-import SearchComponent from './components/Search.component'
+import SearchComponent from './components/FilterSearch.component'
 
 
 function App() {

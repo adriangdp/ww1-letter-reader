@@ -1,5 +1,5 @@
 import { type ChangeEvent } from "react";
-import Checkbox from "./ui/Checkbox";
+import Checkbox from "./ui/CustomCheckbox";
 
 
 interface Props{
