@@ -1,52 +1,69 @@
-import { useMemo, useState } from "react";
-import type { Letter } from "../types/types";
+import { useState, type RefObject } from "react";
+import type { Letter, TranslationCollection } from "../types/types";
 import { getTranslation } from "../services/translate";
 import LanguageFlag from "./ui/LanguageFlag.component";
 import Translator from "./Translator.component";
 
-const ReaderModal = (
-    {
-        entryReadable,
+interface Props{
+    entryReadable:Letter, 
+    preferredLang:string,
+    translations:RefObject<TranslationCollection>,
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    handlePreferredLanguage: (s:string)=>void
+    isTranslated:(letter_id:string, language:string)=>boolean
+    addTranslation:(letter_id:string, newLanguage:string, newText:string, ) =>void
+}
+
+
+const ReaderModal = ({
+        entryReadable, 
         preferredLang, 
+        translations,
         setIsOpen,
-        handlePreferredLanguage
-    } 
-    :  
-    {
-        entryReadable:Letter, 
-        preferredLang:string,
-        setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
-        handlePreferredLanguage: (s:string)=>void
-    
-    }) =>{
+        handlePreferredLanguage,
+        isTranslated,
+        addTranslation}:Props)=>{
 
     const {letter_key, author, language, place, day, month, year, source} = entryReadable.meta;
-    const [translatedText,setTranslatedText] = useState<string>("");
-    const isTranslated = useMemo(()=>{
-        if(translatedText.length > 0){
-            return true;
-        }
-        return false;
-    }, [translatedText])
+    const [translation, setTranslation] = useState<string>("");
+    const [isShowTranslation, setIsShowTranslation] = useState<boolean>(false);
+
     const isDated = day.length + month.length + year.length > 0;
     const handleClose = ():void =>{
         setIsOpen(false);
     }
-    const handleTranslateText = async(languageTo:string) =>{
-        console.log("OKODOKO")
-        console.log(languageTo)
+
+    const handleToggleShowTranslation = () =>{
+        setIsShowTranslation(prev=>!prev)
+    }
+
+    const handleTranslatext = async(languageTo:string) =>{       
+        if(isShowTranslation){
+            handleToggleShowTranslation()
+            return;
+        }
+        if(isTranslated(letter_key, languageTo)){
+            setTranslation(translations.current[letter_key][languageTo]);
+            handleToggleShowTranslation();
+            return;
+        }
+
+        translateText(languageTo)
+        .then(()=>{
+            setTranslation(translations.current[letter_key][languageTo]);
+            handleToggleShowTranslation();
+        });
+
+    }
+
+    const translateText = async(languageTo:string)=>{
         const languageFrom = language === "french" ? "fr":"en";
         const translationResponse = await getTranslation(
             entryReadable.content,
             languageFrom,
             languageTo
         )
-        if(translationResponse.length > 0){
-            setTranslatedText(translationResponse)
-        }
-        else{
-            setTranslatedText("")
-        }
+        addTranslation(letter_key, languageTo, translationResponse);
     }
 
     return(
@@ -107,10 +124,10 @@ const ReaderModal = (
                     <div className="overflow-y-scroll">
                         <p className="whitespace-pre-wrap text-coal/80 font-brawler tracking-wide">
                             {
-                                !isTranslated ?
+                                translation.length < 1 || !isShowTranslation?
                                 entryReadable.content
                                 :
-                                translatedText
+                                translation
                             }
                         </p>
                     </div>
@@ -120,8 +137,9 @@ const ReaderModal = (
 
                 <div className="max-w-full">
                     <Translator 
-                        translate={handleTranslateText} 
-                        preferredLang={preferredLang} 
+                        translate={handleTranslatext}
+                        preferredLang={preferredLang}
+                        isShowTranslation={isShowTranslation}
                         handlePreferredLanguage={handlePreferredLanguage}
                     ></Translator> 
                     <p className="p-3 border-2 text-rust bg-paper-light border-candelight/20">

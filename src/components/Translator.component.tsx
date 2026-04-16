@@ -7,19 +7,18 @@ interface apiLanguages{
     }    
 }
 
-const Translator = (
-    {
-        preferredLang,
-        translate,
-        handlePreferredLanguage
+interface Props{
+    preferredLang:string,
+    isShowTranslation:boolean,
+    translate: (languageTo:string)=>void,
+    handlePreferredLanguage: (s:string)=>void
+}
 
-    }
-    :
-    {
-        preferredLang:string,
-        translate: (languageTo:string)=>void,
-        handlePreferredLanguage: (s:string)=>void
-    }) =>{
+const Translator = ({
+    preferredLang, 
+    isShowTranslation, 
+    translate, 
+    handlePreferredLanguage,}:Props) =>{
     
     const[locales, setLocales] = useState<apiLanguages>();
     const[languageTo, setLanguageTo] = useState(preferredLang);   
@@ -45,7 +44,7 @@ const Translator = (
     return(
         <div className="mb-5 flex w-full gap-3">
             <select value={languageTo} onChange={(e)=>handleLocaleChange(e)}
-                className="max-w-1/2 lg:max-w-2/3 max-h-10 lg:h-10 p-2 cursor-pointer truncate border border-rust bg-paper-light"
+                className="min-w-0 grow max-h-10 lg:h-10 p-2 cursor-pointer truncate border border-rust bg-paper-light"
                 aria-label="Translation language selector"
                 >
                 {
@@ -54,18 +53,17 @@ const Translator = (
                         return
                         }
                         return(<option key={i} value={locales.supported_languages[o]}
-                                className="max-w-20 text-ellipsis overflow-hidden"
+                                className="max-w-15 text-ellipsis overflow-hidden"
                             >{o}</option>)
                         }                        
                     )
                 }
             </select>
-            <button onClick={handleTranslate}
-                className="grow md:grow-0 min-w-fit max-h-10 lg:h-10 border p-2 border-rust bg-paper-light"
-            >
+                <button onClick={handleTranslate}
+                    className={`grow shrink-0 md:grow-0 min-w-fit max-h-10 lg:h-10 border p-2 ${!isShowTranslation ? "border-rust bg-paper-light":"border-candelight/40 bg-candelight/20"} `}
+                >
                 <img src="/svg/language.svg" alt="translate icon" className="size-5 inline" aria-hidden/>
-                Translate</button>
-            
+                {!isShowTranslation ? "Translate":"Show Original"}</button>
         </div>
     );
 }

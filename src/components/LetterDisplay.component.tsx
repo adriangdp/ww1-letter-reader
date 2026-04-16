@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import type { Letter } from '../types/types'
+import { useEffect, useRef, useState } from 'react'
+import type { Letter, TranslationCollection } from '../types/types'
 import EntryComponent from '../components/Entry.component'
 import ReaderModal from '../components/ReaderModal.component'
 
@@ -9,6 +9,31 @@ const LetterDisplay =({letters}:{letters:Letter[]}) => {
     const [isReaderOpen, setIsReaderOpen] = useState<boolean>(false);
     const [entryReadable, setEntryReadable] = useState<Letter>();
     const [preferredLang, setPreferredLang] = useState<string>("en");
+
+    const translations = useRef<TranslationCollection>({})
+
+    const addTranslation = (letter_id:string, newLanguage:string, newText:string) =>{
+        const savedLetter = translations.current[letter_id];
+
+        if(savedLetter){
+            if(savedLetter[newLanguage]){
+                return;
+            }
+            translations.current[letter_id][newLanguage] = newText;
+            return;
+        }
+        translations.current[letter_id] = {[newLanguage]: newText}       
+    }
+
+    const isTranslated = (letter_id:string, language:string):boolean => {
+        if(translations.current[letter_id]){
+            if(translations.current[letter_id][language]){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 
     const handleChangePreferredLang = (s:string) =>{
         setPreferredLang(s)
@@ -45,9 +70,12 @@ const LetterDisplay =({letters}:{letters:Letter[]}) => {
         isReaderOpen && entryReadable &&
             <ReaderModal             
                 entryReadable={entryReadable}
+                translations={translations}
                 setIsOpen={setIsReaderOpen} 
                 preferredLang={preferredLang}
-                handlePreferredLanguage={handleChangePreferredLang}
+                handlePreferredLanguage={handleChangePreferredLang}                 
+                isTranslated={isTranslated}  
+                addTranslation={addTranslation}             
             />
         }
     </main>
