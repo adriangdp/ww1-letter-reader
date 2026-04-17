@@ -1,6 +1,8 @@
+const baseUri = "https://api.translateplus.io/v2"
+
 export const getSupportedLanguages = async() =>{
-    
-    const uri = import.meta.env.VITE_BASEURI + "/supported-languages";
+
+    const uri = baseUri + "/supported-languages";
     const options = {
         method: "GET",
         headers: {
@@ -20,7 +22,7 @@ export const getSupportedLanguages = async() =>{
 
 export const getTranslation = async(letterText:string, langFrom:string, langTo:string):Promise<string> =>{
     
-    const uri = import.meta.env.VITE_BASEURI + "/translate";
+    const uri = baseUri + "/translate";
     const options = {
         method: "POST",
         headers: {
