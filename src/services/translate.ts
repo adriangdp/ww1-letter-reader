@@ -6,7 +6,8 @@ export const getSupportedLanguages = async() =>{
     const options = {
         method: "GET",
         headers: {
-            "content-type" : "application/json"
+            "content-type" : "application/json",
+            "X-API-KEY" : import.meta.env.VITE_TRANSLATE,
         }
         
     }
