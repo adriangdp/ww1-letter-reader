@@ -150,7 +150,7 @@ const ReaderModal = ({
 
                             <a href={source} target="_blank"> the british national archive</a> 
                             :
-                            <span> the website<a href={"https://web.archive.org/web/20160219185011/"+source} target="_blank">  Comité du centenaire de la guerre 1914-1918 du pays du Haut-Limousin.</a></span> 
+                            <span> the website<a href={"https://centenaire1418hautlimousin.jimdofree.com/"} target="_blank">  Comité du centenaire de la guerre 1914-1918 du pays du Haut-Limousin.</a></span> 
                         }
 
                     </p>
