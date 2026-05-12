@@ -30,12 +30,13 @@ Letters from the trenches is a small application that consolidates the informati
 - **Instant translation to more than 32 languges:** The letters can be translated to a preferred language with the click of a button thanks to the underlaying [TranslatePlus.io](https://translateplus.io/) Rest API requests.
 - **Responsive Design:** Works on mobile, tablet, and desktop.
 
-## Tech Stack
+## Frameworks and libraries
 
 - **React + Vite** - Reactive framework using vite as bundler.
 - **TypeScript** - Type safety.
 - **TailwindCSS** - Fast, utility oriented styling.
 - **Papaparse** - CSV data parser.
+- **Vitest + Testing Library** - Testing.
 
 ## Project structure
 
@@ -65,7 +66,7 @@ src/
 
 ### Prerequisites
 - [Node.js ^18](https://nodejs.org/)
-- [NPM](https://www.npmjs.com/)/[PNPM](https://pnpm.io/)
+- [NPM](https://www.npmjs.com/)
 
 ### Install
 
@@ -91,7 +92,7 @@ VITE_TRANSLATE = **Your API key goes here**
 ```bash 
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### Scripts
 #### Dev
@@ -109,6 +110,10 @@ npm run preview
 #### Run linter
 ```bash
 npm run lint
+```
+#### Run unit tests
+```bash
+npm run test:unit
 ```
 
 ### Known Limitations
