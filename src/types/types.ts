@@ -15,7 +15,8 @@ export type EntryMeta = {
 }
 
 /**
- * Content of a single letter, identifiable by its letter_key
+ * Type of dictionary.
+ * Content of a single letter, identifiable by its letter_key.
  */
 export type EntryContent = {
  [key:string] : string
